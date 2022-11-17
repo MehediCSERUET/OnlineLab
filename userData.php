@@ -23,21 +23,21 @@ require_once('db.php');
 
 echo "<table>
 <tr>
+<th>Name</th>
 <th>Roll</th>
-<th>ProblemID</th>
-<th>Verdict</th>
-<th>TimeStamp</th>
+<th>Email</th>
+<th>Approved</th>
 </tr>";
 
 try {
-    $stmt = $db->prepare("SELECT * FROM `labdata` WHERE DATE(`Time`) = CURDATE() ORDER BY `Roll` ASC, `ProblemID` ASC;");
+    $stmt = $db->prepare("SELECT * FROM `users`;");
     $result = $stmt->execute();
     while($row = $stmt->fetch()){
         echo "<tr>";
+        echo "<td>".$row['Name']."</td>";
         echo "<td>".$row['Roll']."</td>";
-        echo "<td>".$row['ProblemID']."</td>";
-        echo "<td>".$row['Verdict']."</td>";
-        echo "<td>".$row['Time']."</td>";
+        echo "<td>".$row['Email']."</td>";
+        echo "<td>".$row['Approved']."</td>";
         echo "</tr>";
     }
     

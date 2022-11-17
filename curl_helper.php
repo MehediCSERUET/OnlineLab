@@ -42,7 +42,7 @@ public static function perform_http_request($language, $version, $script, $input
         $number_of_use = json_decode($response, true)["used"];
     }
 
-    if($number_of_use > 190){
+    if($number_of_use == 200){
         $clientId = $ClientID2;
         $clientSecret = $ClientSecret2;
     } else {

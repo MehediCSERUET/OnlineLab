@@ -50,6 +50,39 @@ if(isset($_POST['button'])) {
                 xmlhttp.open("GET","getleader.php",true);
                 xmlhttp.send();
             }
+
+            function approveStudents() {
+                var xmlhttp = new XMLHttpRequest();
+                xmlhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    document.getElementById("status").innerHTML = this.responseText;
+                }
+                };
+                xmlhttp.open("GET","approve.php?q="+document.getElementById("status").innerHTML,true);
+                xmlhttp.send();
+            }
+
+            function users() {
+                var xmlhttp = new XMLHttpRequest();
+                xmlhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    document.getElementById("userData").innerHTML = this.responseText;
+                }
+                };
+                xmlhttp.open("GET","userData.php",true);
+                xmlhttp.send();
+            }
+
+            window.onload = function(){  
+                var xmlhttp = new XMLHttpRequest();
+                xmlhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    document.getElementById("status").innerHTML = this.responseText;
+                }
+                };
+                xmlhttp.open("GET","getStatus.php",true);
+                xmlhttp.send();
+            }
         </script>
     </head>
 <body style="margin-left: 20%; margin-right:20%;">
@@ -59,20 +92,32 @@ if(isset($_POST['button'])) {
 
             
             <form method="post" action="">
-            <div class="row m-2">
-                <div class="col-md-6">
-                <?php echo '<h4>Welcome <em>'.$_SESSION['name'].'</em></h4>'; ?>
+                <div class="row m-2">
+                    <div class="col-md-12 col-lg-12 col-sm-12">
+                    <?php echo '<h2 style="font-size: 130%;">Welcome <em>'.$_SESSION['name'].'</em></h2>'; ?>
+                    </div>
                 </div>
-                <div class="col-md-3">
+            <div class="row m-2">
+                <div class="col-md-3 col-lg-3 col-sm-12">
+                <input type="button" name="approve" value="Users" id="USERInfo" class="btn btn-primary m-1 btn-block" data-toggle="modal" data-target="#exampleModal2" onclick="users()"></input>
+                </div>
+                <div class="col-md-3 col-lg-3 col-sm-12">
+                <button type="button" name="approve" id="status" class="btn btn-primary m-1 btn-block" onclick="approveStudents()"></button>
+                </div>
+                <div class="col-md-3 col-lg-3 col-sm-12">
                 <input type="button" name="leaderboard" value="Leaderboard" class="btn btn-primary m-1 btn-block" data-toggle="modal" data-target="#exampleModal" onclick="showLeaders()"></input>
                 </div>
-                <div class="col-md-3">
+                <div class="col-md-3 col-lg-3 col-sm-12">
                 <input type="submit" name="logout" value="Logout" class="btn btn-primary m-1 btn-block"></input>
                 </div>
             </div>
             </form>
-            
-            <h4 class="labels row m-2">Submit Your Problems</h4>
+            <div class="row m-2">
+                <div class="col">
+                    <h4 class="labels">Submit Your Problems</h4>
+            </div>
+            </div>
+            <div class="row m-2">
             <form action="" method="post">
                 <div class="form-row row m-2">
                 <div class="form-group col">
@@ -103,6 +148,7 @@ if(isset($_POST['button'])) {
                 </div>
                 <br>
             </form>
+        </div>
             
             </div>
         </div>
@@ -124,7 +170,27 @@ if(isset($_POST['button'])) {
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+        </div>
+    </div>
+    </div>
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+    <div class="modal-dialog modal-xl" role="document">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLongTitle">User</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+             <div id="userData"><b>User info will be listed here...</b></div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
         </div>
         </div>
     </div>
