@@ -9,11 +9,11 @@ class CurlHelper {
 // Data= array("param" => "value") ==> index.php?param=value
 public static function perform_http_request($language, $version, $script, $input)
 {
-    $ClientID1 = "3ee3fcf3e5c798c785734db84603ca18";
-    $ClientSecret1 = "854e72c46db101afd28b80f629b1ab7e950aba90e0df25ad7be7126755e20d9";
+    $ClientID1 = "your client ID1";
+    $ClientSecret1 = "your client secret1";
     
-    $ClientID2 = "a07cb22176120122afa0502918e36f6";
-    $ClientSecret2 = "9e44b72920241bfeb7bc1814a2d955f601289898b0259c2cd35cf82d64cd7388";
+    $ClientID2 = "your client ID1";
+    $ClientSecret2 = "your client secret2";
 
     $credit = json_encode(array("clientId"=>$ClientID1,"clientSecret"=>$ClientSecret1)); 
     $number_of_used = -1;
